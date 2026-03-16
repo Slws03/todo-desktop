@@ -111,7 +111,7 @@ function App(): React.JSX.Element {
   return (
     <div className="app-container">
       <div className="app-header">
-        <h1 className="app-title">📝 Todo App v1.1</h1>
+        <h1 className="app-title">📝 Todo App v1.2</h1>
         <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
           {theme === 'dark' ? '☀️' : '🌙'}
         </button>
