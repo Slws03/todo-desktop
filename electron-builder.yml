@@ -1,0 +1,44 @@
+appId: com.steven.tododesktop 
+productName: Todo Desktop 
+copyright: "Copyright 2025" 
+directories: 
+  output: dist-packages    # installer files go here 
+  
+files: 
+  - out/**/*               # compiled app files 
+  
+# Windows 
+win: 
+  icon: resources/icon.png 
+  target: 
+    - target: nsis          # produces a .exe setup wizard 
+      arch: [x64] 
+    - target: dir           # produces a unpacked build
+      arch: [x64]
+    - target: msi           # produces an enterprise .msi 
+      arch: [x64] 
+  
+nsis: 
+  oneClick: false                          # show the install wizard 
+  allowToChangeInstallationDirectory: true 
+  createDesktopShortcut: true 
+  createStartMenuShortcut: true 
+  shortcutName: "Todo Desktop" 
+  
+msi: 
+  oneClick: false 
+  perMachine: false          # install per-user, no admin required 
+  
+# macOS 
+mac: 
+  icon: resources/icon.png 
+  category: public.app-category.productivity 
+  target: 
+    - target: dmg 
+      arch: [x64, arm64]    # Intel and Apple Silicon 
+    - target: dir
+  
+dmg: 
+  window: 
+    width: 540 
+    height: 380

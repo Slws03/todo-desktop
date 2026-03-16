@@ -1,0 +1,76 @@
+/* ── Dark theme (default) ── */
+:root {
+  --bg: #1e1e2e;
+  --bg-soft: #27273a;
+  --bg-mute: #313147;
+  --bg-card: #27273a;
+  --bg-input: #52527a;
+  --border: #4a4a6a;
+  --border-input: #9898d0;
+  --text-1: rgba(230, 230, 250, 0.92);
+  --text-2: rgba(200, 200, 230, 0.60);
+  --text-3: rgba(200, 200, 230, 0.35);
+  --accent: #7c88f0;
+  --accent-hover: #6270d8;
+  --accent-text: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Light theme ── */
+[data-theme='light'] {
+  --bg: #f0f2f8;
+  --bg-soft: #ffffff;
+  --bg-mute: #e8eaf2;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border: #c0c6e0;
+  --border-input: #7080c0;
+  --text-1: #1a1b2e;
+  --text-2: #52597a;
+  --text-3: #9099bb;
+  --accent: #5570cc;
+  --accent-hover: #3f55b0;
+  --accent-text: #ffffff;
+  --shadow: 0 4px 20px rgba(80, 90, 160, 0.12);
+  --shadow-sm: 0 2px 8px rgba(80, 90, 160, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-1);
+  background: var(--bg);
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s, color 0.25s;
+}
