@@ -3,6 +3,12 @@ productName: Todo Desktop
 copyright: "Copyright 2025" 
 directories: 
   output: dist-packages    # installer files go here 
+
+publish:
+  - provider: github
+    owner: Slws03
+    repo: todo-desktop
+    releaseType: release
   
 files: 
   - out/**/*               # compiled app files 

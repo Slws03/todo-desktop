@@ -1,6 +1,7 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { autoUpdater } from 'electron-updater'
 import icon from '../../resources/to-do-list.png?asset'
 import Store from 'electron-store'
 
@@ -13,6 +14,47 @@ interface Todo {
 const store = new Store<{ todos: Todo[] }>({
   defaults: { todos: [] }
 })
+
+function setupAutoUpdater(mainWindow: BrowserWindow): void {
+  // Skip update checks in dev unless explicitly enabled.
+  if (is.dev && process.env.ELECTRON_DEV_UPDATE !== 'true') return
+
+  autoUpdater.on('error', (error) => {
+    console.error('Auto updater error:', error)
+  })
+
+  autoUpdater.on('update-available', (info) => {
+    dialog
+      .showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Update Available',
+        message: `Version ${info.version} is available. Downloading in background.`
+      })
+      .catch(() => undefined)
+  })
+
+  autoUpdater.on('update-downloaded', () => {
+    dialog
+      .showMessageBox(mainWindow, {
+        type: 'question',
+        buttons: ['Install and Restart', 'Later'],
+        defaultId: 0,
+        cancelId: 1,
+        title: 'Update Ready',
+        message: 'A new version has been downloaded. Restart now to apply it?'
+      })
+      .then(({ response }) => {
+        if (response === 0) {
+          autoUpdater.quitAndInstall()
+        }
+      })
+      .catch(() => undefined)
+  })
+
+  autoUpdater.checkForUpdates().catch((error) => {
+    console.error('Failed to check for updates:', error)
+  })
+}
 
 function createWindow(): void {
   // Create the browser window.
@@ -68,6 +110,10 @@ app.whenReady().then(() => {
   ipcMain.handle('store:setTodos', (_event, todos: Todo[]) => store.set('todos', todos))
 
   createWindow()
+  const mainWindow = BrowserWindow.getAllWindows()[0]
+  if (mainWindow) {
+    setupAutoUpdater(mainWindow)
+  }
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
