@@ -9,7 +9,7 @@ files:
   
 # Windows 
 win: 
-  icon: resources/icon.png 
+  icon: resources/to-do-list.png 
   target: 
     - target: nsis          # produces a .exe setup wizard 
       arch: [x64] 
@@ -31,7 +31,7 @@ msi:
   
 # macOS 
 mac: 
-  icon: resources/icon.png 
+  icon: resources/to-do-list.png 
   category: public.app-category.productivity 
   target: 
     - target: dmg 
