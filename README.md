@@ -33,7 +33,7 @@ $ npm run build:mac
 $ npm run build:linux
 ```
 
-## Auto Update + GitHub Release (Simple)
+## Auto Update + GitHub Release
 
 1. In `electron-builder.yml`, set `publish.owner` and `publish.repo` to your GitHub repo.
 2. Create a GitHub personal access token with `repo` scope and set it in your shell:
